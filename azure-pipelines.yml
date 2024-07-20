@@ -27,5 +27,5 @@ steps:
   inputs:
     azureSubscription: 'Fifty''s Azure subscription(bee96a04-36c0-44d5-8ef2-0151df3ecbcf)'    
     imageToDeploy: 'contapppublicreg1.azurecr.io/webapicontdemo:v1'
-    containerAppName: 'cont-app'
+    containerAppName: 'cont-app-1'
     resourceGroup: 'contAppPublicRG'
