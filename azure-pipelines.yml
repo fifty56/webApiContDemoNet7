@@ -31,12 +31,9 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - task: Docker@2
-      displayName: Build and push an image to container registry
+    - task: AzureContainerApps@1
       inputs:
-        command: buildAndPush
-        repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
-        containerRegistry: $(dockerRegistryServiceConnection)
-        tags: |
-          $(tag)
+        azureSubscription: 'Fifty''s Azure subscription(bee96a04-36c0-44d5-8ef2-0151df3ecbcf)'    
+        imageToDeploy: 'contapppublicreg1.azurecr.io/fiftygaborcontapp:latest'
+        containerAppName: 'cont-app'
+        resourceGroup: 'contAppPublicRG'
