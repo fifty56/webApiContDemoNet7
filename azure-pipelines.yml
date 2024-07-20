@@ -1,0 +1,31 @@
+# Docker
+# Build and push an image to Azure Container Registry
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- main
+
+pool:
+  name: default
+
+resources:
+- repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: 'bc6fd541-2e77-4126-9314-2bb5e203281c'
+  imageRepository: 'fiftywebapicontdemonet'
+  containerRegistry: 'contapppublicreg1.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  tag: '$(Build.BuildId)'
+
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+steps:
+- task: AzureContainerApps@1
+  inputs:
+    azureSubscription: 'Fifty''s Azure subscription(bee96a04-36c0-44d5-8ef2-0151df3ecbcf)'    
+    imageToDeploy: 'contapppublicreg1.azurecr.io/webapicontdemo:v1'
+    containerAppName: 'cont-app-1'
+    resourceGroup: 'contAppPublicRG'
